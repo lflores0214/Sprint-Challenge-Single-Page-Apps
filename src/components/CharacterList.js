@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
 import styled from "styled-components";
+import Button from "./Button"
 
 const Container = styled.div`
   width: 90%;
@@ -9,6 +10,7 @@ const Container = styled.div`
   background-color: rgba(126, 120, 99, 0.2);
   display: flex;
   flex-direction: column;
+  justify-content:center;
   align-items: stretch;
   flex-wrap: wrap;
   padding: 2%;
@@ -19,7 +21,7 @@ const Container = styled.div`
   border-radius: 10px;
 `;
 const Input = styled.input`
-  margin-left:35%;
+  margin-left:38%;
   width: 20%;
   text-align:center;
   :focus{
@@ -67,11 +69,15 @@ export default function CharacterList() {
           placeholder="search by name"
           />
         </form>
+        <Button 
+        setPage={setPage}
+        page={page}
+        />
         {characterData.map(character => {
           return (
             <CharacterCard
-              character={character}
-              id={characterData.id}
+              
+              id={character.id}
               name={character.name}
               status={character.status}
               species={character.species}

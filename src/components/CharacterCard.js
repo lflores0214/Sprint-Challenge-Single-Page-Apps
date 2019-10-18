@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
 
 const Card = styled.div`
 width:40%
@@ -17,15 +17,30 @@ text-align: center;
 `;
 
 export default function CharacterCard(props) {
-  
+  const [character, setCharacter] = useState();
+  const [id, setID] = useState(1);
+  useEffect(() => {
+    console.log("this is id", id);
+    axios
+      .get(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(response => {
+        setCharacter(response.data);
+        setID(response.data.id);
+        console.log("this is character", response.data.id);
+      });
+  }, [id]);
+  if (!character) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
-      <NavLink to={`/character/${props.character.id}`}>
-      <Card>
-        <h1>{props.character.name}</h1>
-        <p>Status: {props.character.status}</p>
-        <p>Species: {props.character.species}</p>
-      </Card>
+      <NavLink to={`/character/${props.id}`}>
+        <Card>
+          <h1>{props.name}</h1>
+          <p>{props.id}</p>
+          <p>Status: {props.status}</p>
+          <p>Species: {props.species}</p>
+        </Card>
       </NavLink>
     </div>
   );
