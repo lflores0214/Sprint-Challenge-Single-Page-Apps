@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+
 
 const Card = styled.div`
 width:40%
@@ -15,13 +17,16 @@ text-align: center;
 `;
 
 export default function CharacterCard(props) {
+  
   return (
     <div>
+      <NavLink to={`/character/${props.character.id}`}>
       <Card>
         <h1>{props.character.name}</h1>
         <p>Status: {props.character.status}</p>
         <p>Species: {props.character.species}</p>
       </Card>
+      </NavLink>
     </div>
   );
 }

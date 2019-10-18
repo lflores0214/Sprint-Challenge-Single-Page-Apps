@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+ Answer: Client side routing is usually slower on its initial load but after that routing between views is faster since their is less data being processed
 
 ## Project Set Up
 
